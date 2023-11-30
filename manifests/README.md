@@ -1,4 +1,4 @@
-### Ejecutar los manifiestos
+Ejecutar los manifiestos:
 
 ```sh
 # Crea namespace

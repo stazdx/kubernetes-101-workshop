@@ -38,7 +38,7 @@ $ multipass shell demok8s
 $ sudo su
 ```
 
-### Instalamos kmicrok8s3s
+### Instalamos microk8s
 
 ```sh
 # Instalamos microk8s
@@ -47,11 +47,6 @@ $ snap install microk8s --classic
 # Verificamos la instalacion
 $ microk8s status --wait-ready
 
-# Habilitamos algunos componentes de microk8s (Opcional)
-$ microk8s enable dashboard
-$ microk8s enable dns
-$ microk8s enable registry
-
 # Verificamos que tenemos kubernetes instalado
 $ microk8s kubectl get all --all-namespaces
 
@@ -59,21 +54,10 @@ $ microk8s kubectl get all --all-namespaces
 $ alias k="microk8s kubectl"
 ```
 
-### Desplegamos NginX
-
-```sh
-# Creamos nuestro manifiesto
-$ snap install helm --classic
-
-# Verificamos que tengamos instalado Helm
-$ helm
-```
-
-
 ### Desplegamos NginX 
 
 ```sh
-# Creamos nuestro namespace de trabajo
+# Creamos nuestro namespace
 $ k create ns test
 
 # Creamos un pod de nginx
@@ -99,7 +83,7 @@ $ k get deploy -n test
 $ k logs -f -l app=nginx -n test
 
 # Exponemos un servicio que balancee nuestros 2 pods creados
-$ k create service loadbalancer nginx -n test --tcp=9090:80
+$ k create svc loadbalancer nginx -n test --tcp=9090:80
 ```
 
 ### Verificamos nuestro servicio y obtenemos nuestro puerto
